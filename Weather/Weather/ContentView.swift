@@ -1,21 +1,22 @@
-//
-//  ContentView.swift
-//  Weather
-//
-//  Created by Vladimir Fibe on 29.10.2022.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            LinearGradient(colors: [.blue, .white], startPoint: .topLeading, endPoint: .bottomTrailing)
+            .ignoresSafeArea()
+            content
+            
         }
-        .padding()
+    }
+    var content: some View {
+        VStack {
+            Text("Cupertino, CA")
+                .font(.system(size: 32, weight: .medium, design: .default))
+                .foregroundColor(.white)
+
+            Spacer()
+        }
     }
 }
 
