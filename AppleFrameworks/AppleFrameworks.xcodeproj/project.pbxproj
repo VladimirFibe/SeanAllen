@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		021D79AF291180E20019C55E /* FrameworkGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D79AE291180E20019C55E /* FrameworkGridViewModel.swift */; };
 		021D79B12911E4C30019C55E /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D79B02911E4C30019C55E /* SafariView.swift */; };
+		021D79B32911F0E20019C55E /* FrameworkTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D79B22911F0E20019C55E /* FrameworkTitleView.swift */; };
+		021D79B52911F1880019C55E /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D79B42911F1880019C55E /* XDismissButton.swift */; };
 		02A15CA02910A896008AFDE7 /* AppleFrameworksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A15C9F2910A896008AFDE7 /* AppleFrameworksApp.swift */; };
 		02A15CA42910A898008AFDE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A15CA32910A898008AFDE7 /* Assets.xcassets */; };
 		02A15CA82910A898008AFDE7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A15CA72910A898008AFDE7 /* Preview Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		021D79AE291180E20019C55E /* FrameworkGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkGridViewModel.swift; sourceTree = "<group>"; };
 		021D79B02911E4C30019C55E /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		021D79B22911F0E20019C55E /* FrameworkTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkTitleView.swift; sourceTree = "<group>"; };
+		021D79B42911F1880019C55E /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		02A15C9C2910A896008AFDE7 /* AppleFrameworks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleFrameworks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A15C9F2910A896008AFDE7 /* AppleFrameworksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleFrameworksApp.swift; sourceTree = "<group>"; };
 		02A15CA32910A898008AFDE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +48,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021D79B6291212270019C55E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				021D79AE291180E20019C55E /* FrameworkGridViewModel.swift */,
+				021D79B8291212580019C55E /* FrameworkDetailView */,
+				021D79B72912123D0019C55E /* FrameworkGridView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		021D79B72912123D0019C55E /* FrameworkGridView */ = {
+			isa = PBXGroup;
+			children = (
+				02A15CAF2910A8B1008AFDE7 /* FrameworkGridView.swift */,
+			);
+			path = FrameworkGridView;
+			sourceTree = "<group>";
+		};
+		021D79B8291212580019C55E /* FrameworkDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				02A15CB22910AD07008AFDE7 /* FrameworkDetailView.swift */,
+			);
+			path = FrameworkDetailView;
+			sourceTree = "<group>";
+		};
+		021D79B9291212A90019C55E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02A15CB42910B512008AFDE7 /* AFButton.swift */,
+				021D79B22911F0E20019C55E /* FrameworkTitleView.swift */,
+				021D79B42911F1880019C55E /* XDismissButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		021D79BA291212CA0019C55E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				02A15CAE2910A8B1008AFDE7 /* Framework.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		021D79BB291213450019C55E /* UIKit Components */ = {
+			isa = PBXGroup;
+			children = (
+				021D79B02911E4C30019C55E /* SafariView.swift */,
+			);
+			path = "UIKit Components";
+			sourceTree = "<group>";
+		};
+		021D79BC291213610019C55E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				02A15CA32910A898008AFDE7 /* Assets.xcassets */,
+				02A15CA52910A898008AFDE7 /* AppleFrameworks.entitlements */,
+				02A15CA62910A898008AFDE7 /* Preview Content */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		02A15C932910A896008AFDE7 = {
 			isa = PBXGroup;
 			children = (
@@ -65,15 +131,11 @@
 			isa = PBXGroup;
 			children = (
 				02A15C9F2910A896008AFDE7 /* AppleFrameworksApp.swift */,
-				02A15CAE2910A8B1008AFDE7 /* Framework.swift */,
-				02A15CAF2910A8B1008AFDE7 /* FrameworkGridView.swift */,
-				02A15CB22910AD07008AFDE7 /* FrameworkDetailView.swift */,
-				02A15CB42910B512008AFDE7 /* AFButton.swift */,
-				021D79AE291180E20019C55E /* FrameworkGridViewModel.swift */,
-				021D79B02911E4C30019C55E /* SafariView.swift */,
-				02A15CA32910A898008AFDE7 /* Assets.xcassets */,
-				02A15CA52910A898008AFDE7 /* AppleFrameworks.entitlements */,
-				02A15CA62910A898008AFDE7 /* Preview Content */,
+				021D79BB291213450019C55E /* UIKit Components */,
+				021D79B9291212A90019C55E /* Views */,
+				021D79B6291212270019C55E /* Screens */,
+				021D79BA291212CA0019C55E /* Model */,
+				021D79BC291213610019C55E /* Supporting Files */,
 			);
 			path = AppleFrameworks;
 			sourceTree = "<group>";
@@ -158,10 +220,12 @@
 			files = (
 				02A15CB32910AD07008AFDE7 /* FrameworkDetailView.swift in Sources */,
 				02A15CB12910A8B1008AFDE7 /* FrameworkGridView.swift in Sources */,
+				021D79B52911F1880019C55E /* XDismissButton.swift in Sources */,
 				02A15CB02910A8B1008AFDE7 /* Framework.swift in Sources */,
 				02A15CB52910B512008AFDE7 /* AFButton.swift in Sources */,
 				02A15CA02910A896008AFDE7 /* AppleFrameworksApp.swift in Sources */,
 				021D79AF291180E20019C55E /* FrameworkGridViewModel.swift in Sources */,
+				021D79B32911F0E20019C55E /* FrameworkTitleView.swift in Sources */,
 				021D79B12911E4C30019C55E /* SafariView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

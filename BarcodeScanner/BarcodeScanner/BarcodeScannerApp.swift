@@ -1,11 +1,11 @@
 import SwiftUI
 
 @main
-struct AppleFrameworksApp: App {
-    @StateObject var viewModel = FrameworkGridViewModel()
+struct BarcodeScannerApp: App {
+    @StateObject var viewModel = BarcodeScannerViewModel()
     var body: some Scene {
         WindowGroup {
-            FrameworkGridView()
+            BarcodeScannerView()
                 .environmentObject(viewModel)
         }
     }
