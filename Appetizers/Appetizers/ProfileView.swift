@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Profile")
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                VStack {
+                    Text("Profile")
+                }
+                .navigationTitle("😀 Profile")
             }
-            .navigationTitle("😀 Profile")
+        } else {
+            NavigationView {
+                VStack {
+                    Text("Profile")
+                }
+                .navigationTitle("😀 Profile")
+            }
         }
     }
+    
 }
 
 struct ProfileView_Previews: PreviewProvider {

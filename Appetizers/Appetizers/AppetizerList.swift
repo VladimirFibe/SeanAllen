@@ -5,20 +5,31 @@ struct AppetizerList: View {
     @ObservedObject var viewModel = AppetizerViewModel()
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(viewModel.appetizers) { appetizer in
-                    AppetizerView(appetizer: appetizer)
+        VStack {
+            if viewModel.isLoading {
+                LoadingView()
+            } else {
+                if #available(iOS 16.0, *) {
+                    NavigationStack { content }
+                } else {
+                    NavigationView { content }
                 }
             }
-            .listStyle(.plain)
-            .navigationTitle("🍿 Appetizer")
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert(title: alertItem.title,
                   message: alertItem.message,
                   dismissButton: alertItem.dismissButton)
         }
+    }
+    var content: some View {
+        List {
+            ForEach(viewModel.appetizers) { appetizer in
+                AppetizerView(appetizer: appetizer)
+            }
+        }
+        .listStyle(.plain)
+        .navigationTitle("🍿 Appetizer")
     }
 }
 

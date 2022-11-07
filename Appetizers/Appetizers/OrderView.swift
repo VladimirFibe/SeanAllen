@@ -9,12 +9,21 @@ import SwiftUI
 
 struct OrderView: View {
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Order")
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                content
             }
-            .navigationTitle("😀 Order")
+        } else {
+            NavigationView {
+                content
+            }
         }
+    }
+    var content: some View {
+        VStack {
+            Text("Order")
+        }
+        .navigationTitle("😀 Order")
     }
 }
 

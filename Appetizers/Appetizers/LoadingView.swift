@@ -13,8 +13,14 @@ struct ActivityIndicator: UIViewRepresentable {
 
 struct LoadingView: View {
     var body: some View {
-        Color(.systemBackground)
-            .ignoresSafeArea()
-            .overlay(ActivityIndicator())
+        VStack {
+            if #available(iOS 15.0, *) {
+                ProgressView()
+            } else {
+                Color(.systemBackground)
+                    .ignoresSafeArea()
+                    .overlay(ActivityIndicator())
+            }
+        }
     }
 }

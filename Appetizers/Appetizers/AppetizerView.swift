@@ -11,14 +11,10 @@ struct AppetizerView: View {
     var appetizer: Appetizer
     var body: some View {
         HStack(spacing: 10) {
-            AsyncImage(url: URL(string: appetizer.imageURL)) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
-            }
-            .scaledToFill()
-            .frame(width: 120, height: 90)
-            .cornerRadius(8)
+            AppetizerRemoteImage(urlString: appetizer.imageURL)
+                .scaledToFill()
+                .frame(width: 120, height: 90)
+                .cornerRadius(8)
             VStack(alignment: .leading, spacing: 5.0) {
                 Text(appetizer.name)
                     .font(.title2)
