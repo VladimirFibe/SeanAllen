@@ -1,10 +1,3 @@
-//
-//  AppetizerView.swift
-//  Appetizers
-//
-//  Created by Vladimir Fibe on 06.11.2022.
-//
-
 import SwiftUI
 
 struct AppetizerView: View {
