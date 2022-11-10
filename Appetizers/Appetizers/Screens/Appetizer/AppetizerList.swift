@@ -2,9 +2,8 @@ import SwiftUI
 
 struct AppetizerList: View {
     
-    @ObservedObject var viewModel = AppetizerViewModel()
-    @State private var isShowingDetail = false
-    @State private var selectedAppetizer = MockData.sampleAppetizer
+    @EnvironmentObject var viewModel: AppetizerViewModel
+    
     var body: some View {
         ZStack {
             if viewModel.isLoading {
@@ -12,12 +11,16 @@ struct AppetizerList: View {
             } else {
                 if #available(iOS 16.0, *) {
                     NavigationStack { content }
+                        .blur(radius: viewModel.isShowingDetail ? 20 : 0)
                 } else {
                     NavigationView { content }
+                        .blur(radius: viewModel.isShowingDetail ? 20 : 0)
                 }
             }
-            if isShowingDetail {
-                AppetizerDetaliView(appetizer: selectedAppetizer, isShowingDetail: $isShowingDetail)
+                
+            if viewModel.isShowingDetail {
+                AppetizerDetaliView(appetizer: viewModel.selectedAppetizer,
+                                    isShowingDetail: $viewModel.isShowingDetail)
             }
         }
         .alert(item: $viewModel.alertItem) { alertItem in
@@ -31,11 +34,13 @@ struct AppetizerList: View {
             ForEach(viewModel.appetizers) { appetizer in
                 AppetizerView(appetizer: appetizer)
                     .onTapGesture {
-                        isShowingDetail.toggle() 
+                        viewModel.isShowingDetail.toggle()
+                        viewModel.selectedAppetizer = appetizer
                     }
             }
         }
         .listStyle(.plain)
+        .disabled(viewModel.isShowingDetail)
         .navigationTitle("🍿 Appetizer")
     }
 }
@@ -43,6 +48,7 @@ struct AppetizerList: View {
 struct AppetizerList_Previews: PreviewProvider {
     static var previews: some View {
         AppetizerList()
+            .environmentObject(AppetizerViewModel())
     }
 }
 

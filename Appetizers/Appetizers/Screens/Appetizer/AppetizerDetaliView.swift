@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct AppetizerDetaliView: View {
+    @EnvironmentObject var order: Order
     let appetizer: Appetizer
     @Binding var isShowingDetail: Bool
     var body: some View {
         let action: () -> () = { isShowingDetail = false }
         VStack {
             AppetizerRemoteImage(urlString: appetizer.imageURL)
-                .scaledToFit()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 225)
             
             VStack {
@@ -29,7 +30,8 @@ struct AppetizerDetaliView: View {
             
             Spacer()
             
-            BrandButton(title: String(format: "$%.2f - Add to Order", appetizer.price)) {
+            BrandButton(title: "$\(appetizer.price, specifier: "%.2f") - Add to Order") {
+                order.add(appetizer)
                 isShowingDetail = false
             }
             .padding(.bottom, 30)
@@ -47,6 +49,7 @@ struct AppetizerDetaliView_Previews: PreviewProvider {
         ZStack {
             Color.gray.ignoresSafeArea()
             AppetizerDetaliView(appetizer: MockData.sampleAppetizer, isShowingDetail: .constant(true))
+                .environmentObject(Order())
         }
     }
 }

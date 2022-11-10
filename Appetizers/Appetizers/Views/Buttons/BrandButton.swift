@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BrandButton: View {
-    let title: String
+    let title: LocalizedStringKey
     let action: () -> ()
     var body: some View {
         Button(action: action) { content }
@@ -17,7 +17,7 @@ struct BrandButton: View {
         Text(title)
             .frame(height: 50)
             .frame(maxWidth: .infinity)
-            .background(Color.green)
+            .background(Color.brandPrimary)
             .foregroundColor(.white)
             .cornerRadius(10)
             .padding(.horizontal, 50)

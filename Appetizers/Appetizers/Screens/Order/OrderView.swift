@@ -8,27 +8,37 @@
 import SwiftUI
 
 struct OrderView: View {
+    @EnvironmentObject var order: Order
     var body: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                content
+        NavigationView {
+            VStack {
+                if order.items.isEmpty {
+                    EmptyState(message: "You have no items in your order. Please add an appetizer!")
+                } else {
+                    List {
+                        ForEach(order.items) { appetizer in
+                            AppetizerView(appetizer: appetizer)
+                        }
+                        .onDelete(perform: order.delete)
+                    }
+                    .listStyle(PlainListStyle())
+                    
+                    BrandButton(title: order.title) {
+                        print("order")
+                    }
+                    .padding(.bottom, 25)
+                }
             }
-        } else {
-            NavigationView {
-                content
-            }
+            .navigationTitle("😀 Order")
         }
     }
-    var content: some View {
-        VStack {
-            Text("Order")
-        }
-        .navigationTitle("😀 Order")
-    }
+    
+    
 }
 
 struct OrderView_Previews: PreviewProvider {
     static var previews: some View {
         OrderView()
+            .environmentObject(Order())
     }
 }
