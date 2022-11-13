@@ -4,7 +4,7 @@ import SwiftUI
 struct DubDubGrubApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppTabView()
         }
     }
 }
