@@ -26,6 +26,7 @@ struct SpotDetailView: View {
                     .minimumScaleFactor(0.75)
                 buttons
                 Text("Who's Here?")
+                    .font(.title2.bold())
                 friends
                 
             }
