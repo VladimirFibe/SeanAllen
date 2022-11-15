@@ -11,22 +11,12 @@ struct SpotDetailView: View {
     let spot: Spot
     var body: some View {
         VStack {
-            Image("default-banner-asset")
-                .resizable()
-                .scaledToFill()
-                .frame(height: 100)
+            bannerImage
             VStack(alignment: .center, spacing: 16) {
-                Label("1 S Market St Ste 40", systemImage: "mappin.and.ellipse")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-
-                Text("It's \(spot.name). Enough said. 2022-11-14 20:35:12.020029+0600 DubDubGrub[1889:37111] [VKDefault] Missing MeshRenderables for ground mesh layer for (2/2) of ground tiles. Tile debug info: (Key: 2644.6357.14.255 t:34 kt:0, Has mesh errors: 0, MeshInstance count: 2, PendingMaterial count: 2, Invisible MeshInstances count: 0 | Key: 2644.6358.14.255 t:34 kt:0, Has mesh errors: 0, MeshInstance count: 2, PendingMaterial count: 2, Invisible MeshInstances count: 0)")
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.75)
+                addressLabel
+                descriptionView
                 buttons
-                Text("Who's Here?")
-                    .font(.title2.bold())
+                Text("Who's Here?").font(.title2.bold())
                 friends
                 
             }
@@ -46,6 +36,23 @@ struct SpotDetailView: View {
 
             }
         }
+    }
+    var bannerImage: some View {
+        Image("default-banner-asset")
+            .resizable()
+            .scaledToFill()
+            .frame(height: 100)
+    }
+    var addressLabel: some View {
+        Label("1 S Market St Ste 40", systemImage: "mappin.and.ellipse")
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .font(.caption)
+            .foregroundColor(.secondary)
+    }
+    var descriptionView: some View {
+        Text("It's \(spot.name). Enough said. 2022-11-14 20:35:12.020029+0600 DubDubGrub[1889:37111] [VKDefault] Missing MeshRenderables for ground mesh layer for (2/2) of ground tiles. Tile debug info: (Key: 2644.6357.14.255 t:34 kt:0, Has mesh errors: 0, MeshInstance count: 2, PendingMaterial count: 2, Invisible MeshInstances count: 0 | Key: 2644.6358.14.255 t:34 kt:0, Has mesh errors: 0, MeshInstance count: 2, PendingMaterial count: 2, Invisible MeshInstances count: 0)")
+            .lineLimit(3)
+            .minimumScaleFactor(0.75)
     }
     var buttons: some View {
         HStack(spacing: 20) {

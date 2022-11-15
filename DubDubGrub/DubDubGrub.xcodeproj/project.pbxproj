@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02E81A252920F66500E4F8D5 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E81A242920F66500E4F8D5 /* SwiftUIView.swift */; };
+		02934DAB29231CD3006579AD /* SpotRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02934DAA29231CD3006579AD /* SpotRow.swift */; };
+		02934DAD29231FFC006579AD /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02934DAC29231FFC006579AD /* CustomModifiers.swift */; };
+		02934DAF29232066006579AD /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02934DAE29232066006579AD /* View+Extension.swift */; };
+		02934DB129232237006579AD /* DDGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02934DB029232237006579AD /* DDGButton.swift */; };
 		02E81A272920F67900E4F8D5 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E81A262920F67800E4F8D5 /* AvatarView.swift */; };
 		02E81A292920FA0C00E4F8D5 /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E81A282920FA0C00E4F8D5 /* SpotDetailView.swift */; };
 		02E81A2B2920FCFE00E4F8D5 /* CircleColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */; };
@@ -23,7 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02E81A242920F66500E4F8D5 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		02934DAA29231CD3006579AD /* SpotRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotRow.swift; sourceTree = "<group>"; };
+		02934DAC29231FFC006579AD /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
+		02934DAE29232066006579AD /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		02934DB029232237006579AD /* DDGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGButton.swift; sourceTree = "<group>"; };
 		02E81A262920F67800E4F8D5 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		02E81A282920FA0C00E4F8D5 /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
 		02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleColorButton.swift; sourceTree = "<group>"; };
@@ -51,6 +57,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02934DB22923245A006579AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02EA5A3829209C9900F3C70C /* Color+Extension.swift */,
+				02934DAE29232066006579AD /* View+Extension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		02934DB32923247A006579AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02934DB729232554006579AD /* Modifiers */,
+				02934DB62923250D006579AD /* CustomViews */,
+				02934DB5292324EC006579AD /* Cells */,
+				02934DB429232486006579AD /* Screens */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		02934DB429232486006579AD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				02EA5A3A29209D8000F3C70C /* AppTabView.swift */,
+				02EA5A3C29209DD100F3C70C /* LocationMapView.swift */,
+				02EA5A3E29209DFD00F3C70C /* LocationListView.swift */,
+				02E81A282920FA0C00E4F8D5 /* SpotDetailView.swift */,
+				02EA5A4029209E2300F3C70C /* ProfileView.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		02934DB5292324EC006579AD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				02934DAA29231CD3006579AD /* SpotRow.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		02934DB62923250D006579AD /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */,
+				02E81A262920F67800E4F8D5 /* AvatarView.swift */,
+				02934DB029232237006579AD /* DDGButton.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		02934DB729232554006579AD /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				02934DAC29231FFC006579AD /* CustomModifiers.swift */,
+			);
+			name = Modifiers;
+			sourceTree = "<group>";
+		};
 		02EA5A1C292090CF00F3C70C = {
 			isa = PBXGroup;
 			children = (
@@ -71,16 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				02EA5A28292090D000F3C70C /* DubDubGrubApp.swift */,
-				02EA5A3829209C9900F3C70C /* Color+Extension.swift */,
-				02EA5A3A29209D8000F3C70C /* AppTabView.swift */,
-				02EA5A3C29209DD100F3C70C /* LocationMapView.swift */,
-				02EA5A3E29209DFD00F3C70C /* LocationListView.swift */,
-				02E81A282920FA0C00E4F8D5 /* SpotDetailView.swift */,
-				02EA5A4029209E2300F3C70C /* ProfileView.swift */,
-				02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */,
+				02934DB32923247A006579AD /* Views */,
+				02934DB22923245A006579AD /* Extensions */,
 				02EA5A422920A33300F3C70C /* Spot.swift */,
-				02E81A242920F66500E4F8D5 /* SwiftUIView.swift */,
-				02E81A262920F67800E4F8D5 /* AvatarView.swift */,
 				02EA5A36292090EA00F3C70C /* Supporting Files */,
 			);
 			path = DubDubGrub;
@@ -177,14 +234,17 @@
 				02E81A2B2920FCFE00E4F8D5 /* CircleColorButton.swift in Sources */,
 				02EA5A3929209C9900F3C70C /* Color+Extension.swift in Sources */,
 				02EA5A3D29209DD100F3C70C /* LocationMapView.swift in Sources */,
-				02E81A252920F66500E4F8D5 /* SwiftUIView.swift in Sources */,
 				02EA5A3F29209DFD00F3C70C /* LocationListView.swift in Sources */,
 				02EA5A3B29209D8000F3C70C /* AppTabView.swift in Sources */,
 				02E81A292920FA0C00E4F8D5 /* SpotDetailView.swift in Sources */,
 				02EA5A4129209E2300F3C70C /* ProfileView.swift in Sources */,
+				02934DAB29231CD3006579AD /* SpotRow.swift in Sources */,
 				02EA5A432920A33300F3C70C /* Spot.swift in Sources */,
+				02934DAD29231FFC006579AD /* CustomModifiers.swift in Sources */,
+				02934DAF29232066006579AD /* View+Extension.swift in Sources */,
 				02E81A272920F67900E4F8D5 /* AvatarView.swift in Sources */,
 				02EA5A29292090D000F3C70C /* DubDubGrubApp.swift in Sources */,
+				02934DB129232237006579AD /* DDGButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
