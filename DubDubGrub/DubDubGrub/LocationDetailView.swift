@@ -1,13 +1,6 @@
-//
-//  SpotDetailView.swift
-//  DubDubGrub
-//
-//  Created by Vladimir Fibe on 13.11.2022.
-//
-
 import SwiftUI
 
-struct SpotDetailView: View {
+struct LocationDetailView: View {
     let location: DDGLocation
     var body: some View {
         VStack {
@@ -81,6 +74,14 @@ struct SpotDetailView: View {
                     }
                 }
             }
+        }
+    }
+}
+
+struct LocationDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            LocationDetailView(location: DDGLocation(record: MockData.location))
         }
     }
 }

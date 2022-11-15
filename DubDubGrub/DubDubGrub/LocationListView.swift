@@ -6,13 +6,24 @@ struct LocationListView: View {
         NavigationView {
             List {
                 ForEach(locations, id: \.ckRecordID) { location in
-                    NavigationLink(destination: SpotDetailView(location: location)) {
-                        SpotRow(location: location)
+                    NavigationLink(destination: LocationDetailView(location: location)) {
+                        LocationCell(location: location)
                     }
                 }
             }
             .listStyle(.plain)
             .navigationTitle("Grub Spots")
+        }
+        .onAppear {
+            CloudKitManager.getLocations { result in
+                switch result {
+                    
+                case .success(let locations):
+                    self.locations = locations
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }

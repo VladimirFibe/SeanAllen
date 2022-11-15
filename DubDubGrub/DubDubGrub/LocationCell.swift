@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SpotRow: View {
+struct LocationCell: View {
     let location: DDGLocation
     let logoWidth = 80.0
     let avatarWidth = 35.0
@@ -20,6 +20,14 @@ struct SpotRow: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
+struct LocationCell_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            LocationCell(location: DDGLocation(record: MockData.location))
         }
     }
 }
