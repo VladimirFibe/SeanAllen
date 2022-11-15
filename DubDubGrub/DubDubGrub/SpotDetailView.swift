@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpotDetailView: View {
-    let spot: Spot
+    let location: DDGLocation
     var body: some View {
         VStack {
             bannerImage
@@ -24,7 +24,7 @@ struct SpotDetailView: View {
             .padding()
             Spacer()
         }
-        .navigationTitle(spot.name)
+        .navigationTitle(location.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {
@@ -44,20 +44,20 @@ struct SpotDetailView: View {
             .frame(height: 100)
     }
     var addressLabel: some View {
-        Label("1 S Market St Ste 40", systemImage: "mappin.and.ellipse")
+        Label(location.address, systemImage: "mappin.and.ellipse")
             .frame(maxWidth: .infinity, alignment: .leading)
             .font(.caption)
             .foregroundColor(.secondary)
     }
     var descriptionView: some View {
-        Text("It's \(spot.name). Enough said. 2022-11-14 20:35:12.020029+0600 DubDubGrub[1889:37111] [VKDefault] Missing MeshRenderables for ground mesh layer for (2/2) of ground tiles. Tile debug info: (Key: 2644.6357.14.255 t:34 kt:0, Has mesh errors: 0, MeshInstance count: 2, PendingMaterial count: 2, Invisible MeshInstances count: 0 | Key: 2644.6358.14.255 t:34 kt:0, Has mesh errors: 0, MeshInstance count: 2, PendingMaterial count: 2, Invisible MeshInstances count: 0)")
+        Text(location.description)
             .lineLimit(3)
             .minimumScaleFactor(0.75)
     }
     var buttons: some View {
         HStack(spacing: 20) {
             CircleColorButton(color: .brandPrimary, image: "location.fill", size: 22)
-            Link(destination: URL(string: "https://www.apple.com")!) {
+            Link(destination: URL(string: location.websiteURL)!) {
                 CircleColorLabel(color: .brandPrimary, image: "network", size: 22)
             }
             CircleColorButton(color: .brandPrimary, image: "phone.fill", size: 22)
@@ -84,12 +84,3 @@ struct SpotDetailView: View {
         }
     }
 }
-
-struct SpotDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            SpotDetailView(spot: Spot.all[0])
-        }
-    }
-}
-

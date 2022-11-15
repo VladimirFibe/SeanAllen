@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct LocationListView: View {
-    var spots: [Spot] = Spot.all
+    @State private var locations: [DDGLocation] = [DDGLocation(record: MockData.location)]
     var body: some View {
         NavigationView {
             List {
-                ForEach(spots) { spot in
-                    NavigationLink(destination: SpotDetailView(spot: spot)) {
-                        SpotRow(spot: spot)
+                ForEach(locations, id: \.ckRecordID) { location in
+                    NavigationLink(destination: SpotDetailView(location: location)) {
+                        SpotRow(location: location)
                     }
                 }
             }
