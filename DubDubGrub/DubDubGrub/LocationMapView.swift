@@ -2,30 +2,23 @@ import SwiftUI
 import MapKit
 
 struct LocationMapView: View {
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(
-            latitude: 37.331516,
-            longitude: -121.891054),
-        span: MKCoordinateSpan(
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01))
+    @EnvironmentObject private var locationManager: LocationManager
+    @StateObject var viewModel = LocationMapViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {
-            Map(coordinateRegion: $region).ignoresSafeArea()
-            
+            Map(coordinateRegion: $viewModel.region, annotationItems: locationManager.locations) { location in
+                MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
+            }.ignoresSafeArea()
             LogoView().shadow(radius: 10)
         }
+        .alert(item: $viewModel.alertItem) { item in
+            Alert(title: item.title,
+                  message: item.message,
+                  dismissButton: item.dismissButton)
+        }
         .onAppear {
-            CloudKitManager.getLocations { result in
-                switch result {
-                    
-                case .success(let locations):
-                    print(locations)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+            viewModel.getLocations(for: locationManager)
         }
     }
 }

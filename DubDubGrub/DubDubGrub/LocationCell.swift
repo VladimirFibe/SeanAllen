@@ -6,7 +6,11 @@ struct LocationCell: View {
     let avatarWidth = 35.0
     var body: some View {
         HStack {
-            AvatarView(image: "default-square-asset", width: 80)
+            Image(uiImage: location.createImage(from: location.squareAsset, in: .square))
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+                .clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(location.name)
                     .font(.title2)
