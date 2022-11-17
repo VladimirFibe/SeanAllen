@@ -8,10 +8,11 @@ struct ProfileView: View {
     @State private var lastname     = ""
     @State private var companyname  = ""
     @State private var bio          = ""
+    @State private var avatar       = PlaceholderImage.avatar
     var body: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
-                AvatarView(image: "default-avatar", width: 84)
+                AvatarView(image: avatar, width: 84)
                     .overlay(
                         editImage, alignment: .bottom)
                 

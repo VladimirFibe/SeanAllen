@@ -23,6 +23,6 @@ struct AppTabView: View {
 
 struct AppTabView_Previews: PreviewProvider {
     static var previews: some View {
-        AppTabView()
+        AppTabView().environmentObject(LocationManager())
     }
 }

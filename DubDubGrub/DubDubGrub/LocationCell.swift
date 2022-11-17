@@ -6,7 +6,7 @@ struct LocationCell: View {
     let avatarWidth = 35.0
     var body: some View {
         HStack {
-            Image(uiImage: location.createImage(from: location.squareAsset, in: .square))
+            Image(uiImage: location.createSquare())
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
@@ -19,7 +19,7 @@ struct LocationCell: View {
                     .minimumScaleFactor(0.75)
                 HStack {
                     ForEach(0..<5) { index in
-                        AvatarView(image: "default-avatar", width: 35)
+                        AvatarView(image: PlaceholderImage.avatar, width: 35)
                     }
                 }
             }

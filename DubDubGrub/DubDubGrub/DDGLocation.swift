@@ -4,8 +4,8 @@ struct DDGLocation: Identifiable {
     
     static let kNname       = "name"
     static let kDescription = "description"
-    static let kSqureAsset  = "squreAsset"
-    static let kBannerAsset = "bunnerAsset"
+    static let kSqureAsset  = "squareAsset"
+    static let kBannerAsset = "bannerAsset"
     static let kAddress     = "address"
     static let kLocation    = "location"
     static let kWebsiteURL  = "websiteURL"
@@ -33,7 +33,14 @@ struct DDGLocation: Identifiable {
         phoneNumber = record[Self.kPhoneNumber] as? String ?? "N/A"
     }
     
-    func createImage(from asset: CKAsset?, in dimension: ImageDimension) -> UIImage {
+    func createSquare() -> UIImage {
+        createImage(from: squareAsset, in: .square)
+    }
+    
+    func createBanner() -> UIImage {
+        createImage(from: bannerAsset, in: .banner)
+    }
+    private func createImage(from asset: CKAsset?, in dimension: ImageDimension) -> UIImage {
         guard let asset = asset else {
             switch dimension {
             case .square:

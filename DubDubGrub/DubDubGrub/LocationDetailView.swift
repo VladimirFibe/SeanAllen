@@ -31,7 +31,7 @@ struct LocationDetailView: View {
         }
     }
     var bannerImage: some View {
-        Image("default-banner-asset")
+        Image(uiImage: location.createBanner())
             .resizable()
             .scaledToFill()
             .frame(height: 100)
@@ -69,7 +69,7 @@ struct LocationDetailView: View {
             LazyVGrid(columns: columns) {
                 ForEach(0 ..< 15) { item in
                     VStack {
-                        AvatarView(image: "default-avatar", width: 80)
+                        AvatarView(image: PlaceholderImage.avatar, width: 80)
                         Text("Name")
                     }
                 }

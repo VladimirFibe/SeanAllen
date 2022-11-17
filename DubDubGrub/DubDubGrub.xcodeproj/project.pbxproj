@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		026AD3EA2925AD500099EE06 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026AD3E92925AD500099EE06 /* WelcomeView.swift */; };
+		026AD3EC2925CC550099EE06 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026AD3EB2925CC550099EE06 /* XDismissButton.swift */; };
 		027E6EA02923C97A008B652D /* DDGLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E6E9F2923C97A008B652D /* DDGLocation.swift */; };
 		027E6EA22923D7F2008B652D /* DDGProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E6EA12923D7F2008B652D /* DDGProfile.swift */; };
 		027E6EA42923DA60008B652D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027E6EA32923DA60008B652D /* MockData.swift */; };
@@ -35,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		026AD3E829259C680099EE06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		026AD3E92925AD500099EE06 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		026AD3EB2925CC550099EE06 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
 		027E6E9F2923C97A008B652D /* DDGLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGLocation.swift; sourceTree = "<group>"; };
 		027E6EA12923D7F2008B652D /* DDGProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGProfile.swift; sourceTree = "<group>"; };
 		027E6EA32923DA60008B652D /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -126,6 +131,7 @@
 				02EA5A3E29209DFD00F3C70C /* LocationListView.swift */,
 				02E81A282920FA0C00E4F8D5 /* LocationDetailView.swift */,
 				02EA5A4029209E2300F3C70C /* ProfileView.swift */,
+				026AD3E92925AD500099EE06 /* WelcomeView.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -144,6 +150,7 @@
 				02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */,
 				02E81A262920F67800E4F8D5 /* AvatarView.swift */,
 				02934DB029232237006579AD /* DDGButton.swift */,
+				026AD3EB2925CC550099EE06 /* XDismissButton.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 		02EA5A27292090D000F3C70C /* DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
+				026AD3E829259C680099EE06 /* Info.plist */,
 				02EA5A28292090D000F3C70C /* DubDubGrubApp.swift */,
 				027E6E9E2923C95A008B652D /* Model */,
 				02934DB32923247A006579AD /* Views */,
@@ -304,11 +312,13 @@
 				02EA5A4129209E2300F3C70C /* ProfileView.swift in Sources */,
 				02934DAB29231CD3006579AD /* LocationCell.swift in Sources */,
 				02934DAD29231FFC006579AD /* CustomModifiers.swift in Sources */,
+				026AD3EC2925CC550099EE06 /* XDismissButton.swift in Sources */,
 				027E6EA22923D7F2008B652D /* DDGProfile.swift in Sources */,
 				02A3DA2229245D000045E453 /* LocationManager.swift in Sources */,
 				02A3DA1C29244C4F0045E453 /* AlertItem.swift in Sources */,
 				02934DAF29232066006579AD /* View+Extension.swift in Sources */,
 				02E81A272920F67900E4F8D5 /* AvatarView.swift in Sources */,
+				026AD3EA2925AD500099EE06 /* WelcomeView.swift in Sources */,
 				02EA5A29292090D000F3C70C /* DubDubGrubApp.swift in Sources */,
 				02934DB129232237006579AD /* DDGButton.swift in Sources */,
 				027E6EAB2923F43F008B652D /* CKRecord+Extension.swift in Sources */,
@@ -445,8 +455,13 @@
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DubDubGrub/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Grub.kz;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Please;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Please;
+				INFOPLIST_KEY_NSLocationUsageDescription = Please;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Pliease;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -478,8 +493,13 @@
 				DEVELOPMENT_TEAM = 723HTEFHBA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DubDubGrub/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Grub.kz;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Please;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Please;
+				INFOPLIST_KEY_NSLocationUsageDescription = Please;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Pliease;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -4,12 +4,14 @@ import MapKit
 struct LocationMapView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @StateObject var viewModel = LocationMapViewModel()
-    
+    @AppStorage("isOnboarding") var isOnboarding = true
     var body: some View {
         ZStack(alignment: .top) {
-            Map(coordinateRegion: $viewModel.region, annotationItems: locationManager.locations) { location in
+            Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
-            }.ignoresSafeArea()
+            }
+            .accentColor(.grubRed)
+            .ignoresSafeArea()
             LogoView().shadow(radius: 10)
         }
         .alert(item: $viewModel.alertItem) { item in
@@ -20,12 +22,18 @@ struct LocationMapView: View {
         .onAppear {
             viewModel.getLocations(for: locationManager)
         }
+        .sheet(isPresented: $isOnboarding, onDismiss: {
+            viewModel.checkIfLocationServiceIsEnabled()
+            isOnboarding = false
+        }) {
+            WelcomeView()
+        }
     }
 }
 
 struct LocationMapView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationMapView()
+        LocationMapView().environmentObject(LocationManager())
     }
 }
 

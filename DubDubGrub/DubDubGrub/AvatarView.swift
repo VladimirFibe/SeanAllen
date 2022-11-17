@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct AvatarView: View {
-    let image: String
+    let image: UIImage
     let width: CGFloat
     var body: some View {
-        Image(image)
+        Image(uiImage: image)
             .resizable()
             .scaledToFill()
             .frame(width: width, height: width)
@@ -20,7 +20,7 @@ struct AvatarView: View {
 }
 
 struct FirstNameAvatarView: View {
-    let image: String
+    let image: UIImage
     let firstName: String
     let width: CGFloat
     var body: some View {
@@ -31,10 +31,5 @@ struct FirstNameAvatarView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
         }
-    }
-}
-struct AvatarView_Previews: PreviewProvider {
-    static var previews: some View {
-        AvatarView(image: "default-square-asset", width: 80)
     }
 }
