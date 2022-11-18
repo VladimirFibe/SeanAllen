@@ -1,28 +1,33 @@
 import SwiftUI
+import CloudKit
 
 struct ProfileView: View {
-    var remain: Int {
-        100 - bio.count
+    private enum Fields: Int, CaseIterable {
+        case firstname, lastname, companyname, bio
     }
-    @State private var firstname    = ""
-    @State private var lastname     = ""
-    @State private var companyname  = ""
-    @State private var bio          = ""
-    @State private var avatar       = PlaceholderImage.avatar
+
+    @ObservedObject var viewModel = ProfileViewModel()
+
+    @FocusState private var focusedField: Fields?
     var body: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
-                AvatarView(image: avatar, width: 84)
+                AvatarView(image: viewModel.avatar, width: 84)
                     .overlay(
                         editImage, alignment: .bottom)
+                    .onTapGesture {
+                        viewModel.isShownig.toggle()
+                    }
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    TextField("First Name", text: $firstname)
+                    TextField("First Name", text: $viewModel.firstname)
                         .profileNameStyle()
-                    TextField("Last Name", text: $lastname)
+                        .focused($focusedField, equals: .firstname)
+                    TextField("Last Name", text: $viewModel.lastname)
                         .profileNameStyle()
-                    
-                    TextField("Company Name", text: $companyname)
+                        .focused($focusedField, equals: .lastname)
+                    TextField("Company Name", text: $viewModel.companyname)
+                        .focused($focusedField, equals: .companyname)
                 }
             }
             .padding(.horizontal)
@@ -36,26 +41,40 @@ struct ProfileView: View {
                 charactersRemain
                 checkOutButton
             }
-            TextEditor(text: $bio)
+            TextEditor(text: $viewModel.bio)
                 .frame(height: 100)
                 .padding(.horizontal)
                 .overlay(RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.secondary)
                 )
+                .focused($focusedField, equals: .bio)
             Spacer()
             saveProfileButton.padding(.horizontal, 50)
-            
         }
+        .onAppear { viewModel.getProfile() }
         .navigationTitle("Profile")
         .padding()
+        .sheet(isPresented: $viewModel.isShownig) {
+            PhotoPicker(avatar: $viewModel.avatar)
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button("Done") { focusedField = nil }
+            }
+        }
+        .alert(item: $viewModel.alertItem) { item in
+            Alert(title: item.title,
+                  message: item.message,
+                  dismissButton: item.dismissButton)
+        }
     }
     var charactersRemain: some View {
         Group {
             Text("Bio: ")
             +
-            Text("\(remain)")
+            Text("\(viewModel.remain)")
                 .bold()
-                .foregroundColor(remain > 0 ? .brandPrimary : .red)
+                .foregroundColor(viewModel.remain > 0 ? .brandPrimary : .red)
             +
             Text(" characters remain")
         }
@@ -83,7 +102,7 @@ struct ProfileView: View {
     }
     var saveProfileButton: some View {
         Button {
-            
+//            viewModel.createProfile()
         } label: {
             DDGButton(title: "Save Profile")
         }

@@ -1,4 +1,5 @@
 import CloudKit
+import SwiftUI
 
 struct DDGProfile {
     
@@ -24,5 +25,13 @@ struct DDGProfile {
         avatar      = record[Self.kAvatar] as? CKAsset
         companyName = record[Self.kCompanyName] as? String ?? "N/A"
         bio         = record[Self.kBio] as? String ?? "N/A"
+    }
+    
+    private func createImage() -> UIImage {
+        if let avatar {
+            return avatar.convertToUIImage(in: .square)
+        } else {
+            return PlaceholderImage.square
+        }
     }
 }
