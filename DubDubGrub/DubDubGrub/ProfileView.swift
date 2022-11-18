@@ -102,7 +102,7 @@ struct ProfileView: View {
     }
     var saveProfileButton: some View {
         Button {
-//            viewModel.createProfile()
+            viewModel.createProfile()
         } label: {
             DDGButton(title: "Save Profile")
         }

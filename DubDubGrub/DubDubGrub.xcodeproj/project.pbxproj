@@ -97,8 +97,8 @@
 		027493F529270BDF00A08A7E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				02EA5A4029209E2300F3C70C /* ProfileView.swift */,
 				027493F629270C0000A08A7E /* ProfileViewModel.swift */,
+				02EA5A4029209E2300F3C70C /* ProfileView.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";

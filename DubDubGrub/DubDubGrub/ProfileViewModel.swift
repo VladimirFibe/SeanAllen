@@ -19,7 +19,7 @@ final class ProfileViewModel: ObservableObject {
               !companyname.isEmpty,
               !bio.isEmpty,
               avatar != PlaceholderImage.avatar,
-              bio.count < 100 else { return false}
+              bio.count < 101 else { return false}
         return true
     }
     
@@ -28,55 +28,57 @@ final class ProfileViewModel: ObservableObject {
             alertItem = AlertContext.invalidProfile
             return }
         
+        let profileRecord = createProfileRecord()
+        
+        guard let userRecord = CloudKitManager.shared.userRecord else { return }
+        
+        userRecord["userProfile"] = CKRecord.Reference(record: profileRecord, action: .none)
+        
+        CloudKitManager.shared.batchSave(records: [userRecord, profileRecord]) { result in
+            switch result {
+                
+            case .success(_):
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    
+    func getProfile() {
+        
+        guard let userRecord = CloudKitManager.shared.userRecord else { return }
+        
+        guard let profileReference = userRecord["userProfile"] as? CKRecord.Reference else {
+            return
+        }
+        let profileRecordID = profileReference.recordID
+        
+        CloudKitManager.shared.fetchRecord(with: profileRecordID) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let record):
+                    let profile = DDGProfile(record: record)
+                    self.firstname = profile.fistName
+                    self.lastname = profile.lastName
+                    self.companyname = profile.companyName
+                    self.bio = profile.bio
+                    self.avatar = profile.avatar.convertToUIImage(in: .square)
+                case .failure(_):
+                    break
+                }
+            }
+        }
+    }
+    
+    private func createProfileRecord() -> CKRecord {
         let profileRecord = CKRecord(recordType: RecordType.profile)
         profileRecord[DDGProfile.kFirstName] = firstname
         profileRecord[DDGProfile.kLastName] = lastname
         profileRecord[DDGProfile.kCompanyName] = companyname
         profileRecord[DDGProfile.kBio] = bio
         profileRecord[DDGProfile.kAvatar] = avatar.convertToCKAsset()
-        
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID = recordID, error == nil else { return }
-            
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord = userRecord, error == nil else { return }
-                
-                userRecord["userProfile"] = CKRecord.Reference(record: profileRecord, action: .none)
-                
-                let opertaton = CKModifyRecordsOperation(recordsToSave: [userRecord, profileRecord])
-                
-                opertaton.modifyRecordsCompletionBlock = { savedRecords, _, error in
-                    guard let savedRecords = savedRecords, error == nil else { return }
-                    print(savedRecords)
-                }
-                CKContainer.default().publicCloudDatabase.add(opertaton)
-            }
-        }
-    }
-    
-    func getProfile() {
-        CKContainer.default().fetchUserRecordID { recordID, error in
-            guard let recordID, error == nil else { return }
-            
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordID) { userRecord, error in
-                guard let userRecord, error == nil else { return }
-                
-                let profileReference = userRecord["userProfile"] as! CKRecord.Reference
-                let prifileRecordID = profileReference.recordID
-                
-                CKContainer.default().publicCloudDatabase.fetch(withRecordID: prifileRecordID) { profileRecord, error in
-                    guard let profileRecord, error == nil else { return }
-                    
-                    DispatchQueue.main.async {
-                        let profile = DDGProfile(record: profileRecord)
-                        self.firstname = profile.fistName
-                        self.lastname = profile.lastName
-                        self.companyname = profile.companyName
-                        self.bio = profile.bio
-                        self.avatar = profile.avatar.convertToUIImage(in: .square)
-                    }
-                }
-            }
-        }
+        return profileRecord
     }
 }
