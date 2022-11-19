@@ -10,6 +10,28 @@ struct ProfileView: View {
 
     @FocusState private var focusedField: Fields?
     var body: some View {
+        ZStack {
+            content
+            if viewModel.isLoading { LoadingView() }
+        }
+        .onAppear { viewModel.getProfile() }
+        .navigationTitle("Profile")
+        .padding()
+        .sheet(isPresented: $viewModel.isShownig) {
+            PhotoPicker(avatar: $viewModel.avatar)
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button("Done") { focusedField = nil }
+            }
+        }
+        .alert(item: $viewModel.alertItem) { item in
+            Alert(title: item.title,
+                  message: item.message,
+                  dismissButton: item.dismissButton)
+        }
+    }
+    var content: some View {
         VStack(spacing: 20.0) {
             HStack(spacing: 20.0) {
                 AvatarView(image: viewModel.avatar, width: 84)
@@ -51,22 +73,6 @@ struct ProfileView: View {
             Spacer()
             saveProfileButton.padding(.horizontal, 50)
         }
-        .onAppear { viewModel.getProfile() }
-        .navigationTitle("Profile")
-        .padding()
-        .sheet(isPresented: $viewModel.isShownig) {
-            PhotoPicker(avatar: $viewModel.avatar)
-        }
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                Button("Done") { focusedField = nil }
-            }
-        }
-        .alert(item: $viewModel.alertItem) { item in
-            Alert(title: item.title,
-                  message: item.message,
-                  dismissButton: item.dismissButton)
-        }
     }
     var charactersRemain: some View {
         Group {
@@ -102,9 +108,10 @@ struct ProfileView: View {
     }
     var saveProfileButton: some View {
         Button {
-            viewModel.createProfile()
+            viewModel.saveButtonAction()
         } label: {
-            DDGButton(title: "Save Profile")
+            let title = viewModel.profileContext == .create ? "Create Profile" : "Update Profile"
+            DDGButton(title: title)
         }
     }
 }

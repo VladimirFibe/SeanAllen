@@ -1,7 +1,7 @@
 import CloudKit
 import SwiftUI
 
-struct DDGProfile {
+struct DDGProfile: Identifiable {
     
     static let kFirstName   = "fisrtName"
     static let kLastName    = "lastName"
@@ -10,7 +10,7 @@ struct DDGProfile {
     static let kBio         = "bio"
     static let kIsCheckedIn = "isCheckedIn"
     
-    let ckRecordID: CKRecord.ID
+    let id: CKRecord.ID
     let fistName: String
     let lastName: String
     let avatar: CKAsset!
@@ -19,7 +19,7 @@ struct DDGProfile {
     let isCheckedIn: CKRecord.Reference? = nil
     
     init(record: CKRecord) {
-        ckRecordID  = record.recordID
+        id          = record.recordID
         fistName    = record[Self.kFirstName] as? String ?? "N/A"
         lastName    = record[Self.kLastName] as? String ?? "N/A"
         avatar      = record[Self.kAvatar] as? CKAsset

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023710462927CEB200709347 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023710452927CEB200709347 /* LoadingView.swift */; };
+		0237104929284CC800709347 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237104829284CC800709347 /* LocationDetailViewModel.swift */; };
+		0237104B2928635D00709347 /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237104A2928635D00709347 /* PersonDetailView.swift */; };
 		026AD3EA2925AD500099EE06 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026AD3E92925AD500099EE06 /* WelcomeView.swift */; };
 		026AD3EC2925CC550099EE06 /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026AD3EB2925CC550099EE06 /* XDismissButton.swift */; };
 		027493F22926E63A00A08A7E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027493F12926E63A00A08A7E /* PhotoPicker.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		023710452927CEB200709347 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		0237104829284CC800709347 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
+		0237104A2928635D00709347 /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
 		026AD3E829259C680099EE06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		026AD3E92925AD500099EE06 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		026AD3EB2925CC550099EE06 /* XDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
@@ -86,6 +92,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		023710442927CE9600709347 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */,
+				02934DB029232237006579AD /* DDGButton.swift */,
+				026AD3EB2925CC550099EE06 /* XDismissButton.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		0237104729284C9200709347 /* LocationDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				0237104829284CC800709347 /* LocationDetailViewModel.swift */,
+				02E81A282920FA0C00E4F8D5 /* LocationDetailView.swift */,
+				0237104A2928635D00709347 /* PersonDetailView.swift */,
+			);
+			name = LocationDetailView;
+			sourceTree = "<group>";
+		};
 		027493F02926E62100A08A7E /* UIKit Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +165,6 @@
 		02934DB32923247A006579AD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				027493F02926E62100A08A7E /* UIKit Components */,
 				02934DB729232554006579AD /* Modifiers */,
 				02934DB62923250D006579AD /* CustomViews */,
 				02934DB5292324EC006579AD /* Cells */,
@@ -151,11 +176,11 @@
 		02934DB429232486006579AD /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				0237104729284C9200709347 /* LocationDetailView */,
 				027493F529270BDF00A08A7E /* Profile */,
 				02A3DA1D2924553A0045E453 /* LocationMapView */,
 				02EA5A3A29209D8000F3C70C /* AppTabView.swift */,
 				02EA5A3E29209DFD00F3C70C /* LocationListView.swift */,
-				02E81A282920FA0C00E4F8D5 /* LocationDetailView.swift */,
 				026AD3E92925AD500099EE06 /* WelcomeView.swift */,
 			);
 			name = Screens;
@@ -172,10 +197,10 @@
 		02934DB62923250D006579AD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				02E81A2A2920FCFE00E4F8D5 /* CircleColorButton.swift */,
+				027493F02926E62100A08A7E /* UIKit Components */,
+				023710442927CE9600709347 /* Buttons */,
 				02E81A262920F67800E4F8D5 /* AvatarView.swift */,
-				02934DB029232237006579AD /* DDGButton.swift */,
-				026AD3EB2925CC550099EE06 /* XDismissButton.swift */,
+				023710452927CEB200709347 /* LoadingView.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -327,6 +352,8 @@
 				02EA5A3929209C9900F3C70C /* Color+Extension.swift in Sources */,
 				02EA5A3D29209DD100F3C70C /* LocationMapView.swift in Sources */,
 				027E6EA42923DA60008B652D /* MockData.swift in Sources */,
+				0237104929284CC800709347 /* LocationDetailViewModel.swift in Sources */,
+				0237104B2928635D00709347 /* PersonDetailView.swift in Sources */,
 				027E6EA72923EB3E008B652D /* CloudKitManager.swift in Sources */,
 				02EA5A3F29209DFD00F3C70C /* LocationListView.swift in Sources */,
 				027493F729270C0000A08A7E /* ProfileViewModel.swift in Sources */,
@@ -348,6 +375,7 @@
 				027493F42926F4C000A08A7E /* UIImage+Extension.swift in Sources */,
 				026AD3EA2925AD500099EE06 /* WelcomeView.swift in Sources */,
 				02EA5A29292090D000F3C70C /* DubDubGrubApp.swift in Sources */,
+				023710462927CEB200709347 /* LoadingView.swift in Sources */,
 				02934DB129232237006579AD /* DDGButton.swift in Sources */,
 				027E6EAB2923F43F008B652D /* CKRecord+Extension.swift in Sources */,
 				027E6EA92923EC28008B652D /* Constants.swift in Sources */,
