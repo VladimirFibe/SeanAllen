@@ -61,7 +61,10 @@ struct ProfileView: View {
             
             HStack {
                 charactersRemain
-                checkOutButton
+                Spacer()
+                if viewModel.isCheckedIn {
+                    checkOutButton
+                }
             }
             TextEditor(text: $viewModel.bio)
                 .frame(height: 100)
@@ -96,14 +99,14 @@ struct ProfileView: View {
     }
     var checkOutButton: some View {
         Button {
-            
+            viewModel.checkOut()
         } label: {
             Label("Check Out", systemImage: "mappin.and.ellipse")
-                .font(.body.bold())
-                .padding(.horizontal)
-                .padding(.vertical,8)
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(.white)
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.red))
+                .padding(.horizontal)
+                .frame(height: 28)
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color.red))
         }
     }
     var saveProfileButton: some View {

@@ -11,7 +11,7 @@ struct LocationMapView: View {
                 MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
             }
             .accentColor(.grubRed)
-            .ignoresSafeArea()
+            .ignoresSafeArea(.all, edges: .top)
             LogoView().shadow(radius: 10)
         }
         .alert(item: $viewModel.alertItem) { item in

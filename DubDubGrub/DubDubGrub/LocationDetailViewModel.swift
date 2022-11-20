@@ -5,14 +5,17 @@ import CloudKit
 enum CheckInStatus { case checkedIn, checkedOut }
 final class LocationDetailViewModel: ObservableObject {
     @Published var checkedInProfiles: [DDGProfile] = []
-    @Published var isCheckedIn = false
+    @Published var isCheckedIn  = false
     @Published var alertItem: AlertItem?
-    @Published var showFriend = false
+    @Published var showFriend   = false
+    @Published var isLoading    = false
+
     let location: DDGLocation
     
     var checking: CheckInStatus {
         isCheckedIn ? .checkedOut : .checkedIn
     }
+    
     init(location: DDGLocation) {
         self.location = location
     }
@@ -36,8 +39,31 @@ final class LocationDetailViewModel: ObservableObject {
         }
     }
     
-    func updateCheckInStatus(to checkInStatus: CheckInStatus) {
+    func getCheckedInStatus() {
         guard let profileRecordID = CloudKitManager.shared.profileRecordID else { return }
+        print("Сейчас проверим")
+        CloudKitManager.shared.fetchRecord(with: profileRecordID) { result in
+            DispatchQueue.main.async { [self] in
+                switch result {
+                case .success(let record):
+                    print("Идет проверка")
+                    if let reference = record[DDGProfile.kIsCheckedIn] as? CKRecord.Reference {
+                        isCheckedIn = reference.recordID == location.id
+                    } else {
+                        isCheckedIn = false
+                    }
+                case .failure(_):
+                    alertItem = AlertContext.unableToGetCheckInStatus
+                }
+            }
+        }
+    }
+    
+    func updateCheckInStatus(to checkInStatus: CheckInStatus) {
+        guard let profileRecordID = CloudKitManager.shared.profileRecordID else {
+            alertItem = AlertContext.unableToGetProfile
+            return
+        }
         
         CloudKitManager.shared.fetchRecord(with: profileRecordID) { [self] result in
             switch result {
@@ -51,7 +77,7 @@ final class LocationDetailViewModel: ObservableObject {
                 CloudKitManager.shared.save(record: record) { result in
                     DispatchQueue.main.async { [self] in
                         switch result {
-                        case .success(_):
+                        case .success(let record):
                             let profile = DDGProfile(record: record)
                             switch checkInStatus {
                             case .checkedIn:
@@ -60,29 +86,31 @@ final class LocationDetailViewModel: ObservableObject {
                                 checkedInProfiles.removeAll(where: { $0.id == profile.id })
                             }
                             isCheckedIn = checkInStatus == .checkedIn
-                            print("✅ checked in/out successfully!!!")
                         case .failure(_):
-                            print("❌ error saving record")
+                            alertItem = AlertContext.unableToCheckInOrOut
                         }
                     }
                 }
             case .failure(_):
-                print("❌ error fetching record")
+                alertItem = AlertContext.unableToCheckInOrOut
             }
         }
     }
     
     func getCheckedInProfiles() {
-        CloudKitManager.shared.getCheckedInProfiles(for: location.id) {[self] result in
-            DispatchQueue.main.async {
+        showLoadingView()
+        CloudKitManager.shared.getCheckedInProfiles(for: location.id) {result in
+            DispatchQueue.main.async { [self] in
+                hideLoadingView()
                 switch result {
-                    
                 case .success(let profiles):
                     checkedInProfiles = profiles
                 case .failure(_):
-                    print("❌ error fetching checkedIn profiles")
+                    alertItem = AlertContext.unableToGetCheckedInProfiles
                 }
             }
         }
     }
+    private func showLoadingView() { isLoading = true }
+    private func hideLoadingView() { isLoading = false }
 }

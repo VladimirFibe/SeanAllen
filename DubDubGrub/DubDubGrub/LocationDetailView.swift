@@ -12,8 +12,18 @@ struct LocationDetailView: View {
                     descriptionView
                     buttons
                     Text("Who's Here?").font(.title2.bold())
-                    friends
-                    
+                    ZStack {
+                        if viewModel.checkedInProfiles.isEmpty {
+                            Text("Nobody's Here 😔").font(.title2.bold())
+                                .foregroundColor(.secondary)
+                                .padding(.top, 30)
+                        } else {
+                            friends
+                        }
+                        if viewModel.isLoading {
+                            LoadingView()
+                        }
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -31,7 +41,10 @@ struct LocationDetailView: View {
                     .zIndex(2)
             }
         }
-        .onAppear { viewModel.getCheckedInProfiles() }
+        .onAppear {
+            viewModel.getCheckedInProfiles()
+            viewModel.getCheckedInStatus()
+        }
         .alert(item: $viewModel.alertItem, content: { alertItem in
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         })
@@ -76,8 +89,10 @@ struct LocationDetailView: View {
             CircleColorButton(color: .brandPrimary, image: "phone.fill", size: 22) {
                 viewModel.callLocation()
             }
-            CircleColorButton(color: .red, image: "person.fill.xmark", size: 22) {
-                viewModel.updateCheckInStatus(to: viewModel.checking)
+            if let _ = CloudKitManager.shared.profileRecordID {
+                CircleColorButton(color: viewModel.isCheckedIn ? .grubRed : .brandPrimary, image: viewModel.isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark", size: 22) {
+                    viewModel.updateCheckInStatus(to: viewModel.checking)
+                }
             }
         }
         .padding(.vertical, 8)
