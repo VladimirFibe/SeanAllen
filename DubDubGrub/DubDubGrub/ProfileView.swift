@@ -9,6 +9,7 @@ struct ProfileView: View {
     @ObservedObject var viewModel = ProfileViewModel()
 
     @FocusState private var focusedField: Fields?
+    
     var body: some View {
         ZStack {
             content
@@ -69,9 +70,9 @@ struct ProfileView: View {
             TextEditor(text: $viewModel.bio)
                 .frame(height: 100)
                 .padding(.horizontal)
-                .overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.secondary)
-                )
+                .colorMultiply(Color(.secondarySystemBackground))
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
                 .focused($focusedField, equals: .bio)
             Spacer()
             saveProfileButton.padding(.horizontal, 50)
