@@ -9,11 +9,8 @@ struct MapBalloon: Shape {
                           control: CGPoint(x: rect.minX, y: rect.minY))
         path.addQuadCurve(to: CGPoint(x: rect.midX, y: rect.maxY),
                           control: CGPoint(x: rect.maxX, y: rect.minY))
-    
         return path
     }
-    
-    
 }
 
 struct MapBalloon_Previews: PreviewProvider {

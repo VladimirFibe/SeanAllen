@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0215F288292EE27B00F3A44C /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0215F287292EE27B00F3A44C /* LocationListViewModel.swift */; };
 		0233B9BD29310E4900C11AB2 /* MapBalloon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233B9BC29310E4900C11AB2 /* MapBalloon.swift */; };
+		0233B9BF29311F7100C11AB2 /* DDGAnnotaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0233B9BE29311F7100C11AB2 /* DDGAnnotaion.swift */; };
 		023710462927CEB200709347 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023710452927CEB200709347 /* LoadingView.swift */; };
 		0237104929284CC800709347 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237104829284CC800709347 /* LocationDetailViewModel.swift */; };
 		0237104B2928635D00709347 /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237104A2928635D00709347 /* PersonDetailView.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		0215F287292EE27B00F3A44C /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
 		0233B9BC29310E4900C11AB2 /* MapBalloon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBalloon.swift; sourceTree = "<group>"; };
+		0233B9BE29311F7100C11AB2 /* DDGAnnotaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDGAnnotaion.swift; sourceTree = "<group>"; };
 		023710452927CEB200709347 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0237104829284CC800709347 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
 		0237104A2928635D00709347 /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				0233B9BC29310E4900C11AB2 /* MapBalloon.swift */,
+				0233B9BE29311F7100C11AB2 /* DDGAnnotaion.swift */,
 			);
 			name = "Map Annotation";
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				02E81A272920F67900E4F8D5 /* AvatarView.swift in Sources */,
 				027493F42926F4C000A08A7E /* UIImage+Extension.swift in Sources */,
 				026AD3EA2925AD500099EE06 /* WelcomeView.swift in Sources */,
+				0233B9BF29311F7100C11AB2 /* DDGAnnotaion.swift in Sources */,
 				0233B9BD29310E4900C11AB2 /* MapBalloon.swift in Sources */,
 				02EA5A29292090D000F3C70C /* DubDubGrubApp.swift in Sources */,
 				023710462927CEB200709347 /* LoadingView.swift in Sources */,
