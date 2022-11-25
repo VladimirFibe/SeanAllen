@@ -4,29 +4,35 @@ import MapKit
 struct LocationMapView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @StateObject var viewModel = LocationMapViewModel()
-    @AppStorage("isOnboarding") var isOnboarding = true
     var body: some View {
         ZStack(alignment: .top) {
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
-                MapMarker(coordinate: location.location.coordinate, tint: .brandPrimary)
+                MapAnnotation(coordinate: location.location.coordinate, anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
+                    DDGAnnotaion(location: location)
+                        .onTapGesture {
+                            print(location.name)
+                            locationManager.selectedLocation = location
+                        }
+                }
             }
             .accentColor(.grubRed)
             .ignoresSafeArea(.all, edges: .top)
             LogoView().shadow(radius: 10)
         }
+        .sheet(item: $locationManager.selectedLocation, content: { location in
+            NavigationView {
+                LocationDetailView(viewModel: LocationDetailViewModel(location: location))
+            }
+        })
         .alert(item: $viewModel.alertItem) { item in
             Alert(title: item.title,
                   message: item.message,
                   dismissButton: item.dismissButton)
         }
         .onAppear {
-            viewModel.getLocations(for: locationManager)
-        }
-        .sheet(isPresented: $isOnboarding, onDismiss: {
-            viewModel.checkIfLocationServiceIsEnabled()
-            isOnboarding = false
-        }) {
-            WelcomeView()
+            if locationManager.locations.isEmpty {
+                viewModel.getLocations(for: locationManager)
+            }
         }
     }
 }

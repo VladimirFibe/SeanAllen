@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @AppStorage("isOnboarding") var isOnboarding = true
+    @StateObject var viewModel = AppTabViewModel()
     var body: some View {
         TabView {
             LocationMapView()
@@ -17,6 +19,12 @@ struct AppTabView: View {
             .tabItem {
                 Label("Profile", systemImage: "person")
             }
+        }
+        .sheet(isPresented: $isOnboarding, onDismiss: {
+            viewModel.checkIfLocationServiceIsEnabled()
+            isOnboarding = false
+        }) {
+            WelcomeView()
         }
     }
 }

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LocationDetailView: View {
     @ObservedObject var viewModel: LocationDetailViewModel
-    
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack {
             VStack {
@@ -53,7 +53,7 @@ struct LocationDetailView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    
+                    dismiss()
                 } label: {
                     Text("Dismiss")
                 }
