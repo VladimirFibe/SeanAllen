@@ -8,13 +8,25 @@ struct LocationMapView: View {
         ZStack(alignment: .top) {
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapAnnotation(coordinate: location.location.coordinate, anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
-                    DDGAnnotaion(location: location)
+                    DDGAnnotaion(location: location,
+                                 count: viewModel.checkedInProfiles[location.id, default: 0])
                         .onTapGesture {
                             print(location.name)
                             locationManager.selectedLocation = location
                         }
                 }
             }
+            .gesture(DragGesture())
+                    .onLongPressGesture {
+                        print(viewModel.region.center)
+                    }
+            
+//            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true)
+//                .gesture(DragGesture())
+//                .gesture(                     LongPressGesture()
+//                    .onEnded { value in                             print("LongPressGesture "+value.description)                         }                     )
+            
+            
             .accentColor(.grubRed)
             .ignoresSafeArea(.all, edges: .top)
             LogoView().shadow(radius: 10)
@@ -33,6 +45,7 @@ struct LocationMapView: View {
             if locationManager.locations.isEmpty {
                 viewModel.getLocations(for: locationManager)
             }
+            viewModel.getCheckedInCounts()
         }
     }
 }

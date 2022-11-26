@@ -7,9 +7,9 @@ final class LocationDetailViewModel: ObservableObject {
     @Published var checkedInProfiles: [DDGProfile] = []
     @Published var isCheckedIn  = false
     @Published var alertItem: AlertItem?
-    @Published var showFriend   = false
+//    @Published var showFriend   = false
     @Published var isLoading    = false
-
+    @Published var selectedFriend: DDGProfile?
     let location: DDGLocation
     
     var checking: CheckInStatus {

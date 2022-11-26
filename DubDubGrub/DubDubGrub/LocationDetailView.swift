@@ -29,15 +29,15 @@ struct LocationDetailView: View {
                 .padding()
                 Spacer()
             }
-            if viewModel.showFriend {
+            if viewModel.selectedFriend != nil {
                 Color(.systemBackground)
                     .ignoresSafeArea()
                     .opacity(0.9)
                     .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.4)))
                     .zIndex(1)
-                PersonDetailView(profile: DDGProfile(record: MockData.profile), isShowingFriend: $viewModel.showFriend)
+                PersonDetailView(profile: $viewModel.selectedFriend)
                     .transition(.opacity.combined(with: .slide))
-                    .animation(.easeOut, value: viewModel.showFriend)
+                    .animation(.easeOut, value: viewModel.selectedFriend)
                     .zIndex(2)
             }
         }
@@ -113,7 +113,7 @@ struct LocationDetailView: View {
                     }
                     .onTapGesture {
                         withAnimation {
-                            viewModel.showFriend.toggle()
+                            viewModel.selectedFriend = profile
                         }
                     }
                 }

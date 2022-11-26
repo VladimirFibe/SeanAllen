@@ -1,10 +1,3 @@
-//
-//  CKRecord+Extension.swift
-//  DubDubGrub
-//
-//  Created by Vladimir Fibe on 15.11.2022.
-//
-
 import CloudKit
 
 extension CKRecord {

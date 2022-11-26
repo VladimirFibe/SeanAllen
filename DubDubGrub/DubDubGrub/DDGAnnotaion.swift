@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DDGAnnotaion: View {
     var location: DDGLocation
+    var count: Int
     var body: some View {
         VStack {
             ZStack(alignment: .top) {
@@ -14,14 +15,15 @@ struct DDGAnnotaion: View {
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
                     .padding(.top, 4)
-                
-                Text("99")
-                    .font(.system(size: 11, weight: .bold))
-                    .frame(width: 26, height: 18)
-                    .background(Color.grubRed)
-                    .foregroundColor(.white)
-                    .clipShape(Capsule())
-                    .offset(x: 20)
+                if count > 0 {
+                    Text("\(min(count, 99))")
+                        .font(.system(size: 11, weight: .bold))
+                        .frame(width: 26, height: 18)
+                        .background(Color.grubRed)
+                        .foregroundColor(.white)
+                        .clipShape(Capsule())
+                        .offset(x: 20)
+                }
             }
             
             Text(location.name)
@@ -33,6 +35,6 @@ struct DDGAnnotaion: View {
 
 struct DDGAnnotaion_Previews: PreviewProvider {
     static var previews: some View {
-        DDGAnnotaion(location: DDGLocation(record: MockData.location))
+        DDGAnnotaion(location: DDGLocation(record: MockData.location), count: 44)
     }
 }

@@ -207,7 +207,7 @@
 				0237104729284C9200709347 /* LocationDetailView */,
 				027493F529270BDF00A08A7E /* Profile */,
 				02A3DA1D2924553A0045E453 /* LocationMapView */,
-				026AD3E92925AD500099EE06 /* WelcomeView.swift */,
+				02F3B6922931A12100AB4EE8 /* Welcome */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -269,7 +269,6 @@
 		02EA5A27292090D000F3C70C /* DubDubGrub */ = {
 			isa = PBXGroup;
 			children = (
-				026AD3E829259C680099EE06 /* Info.plist */,
 				02EA5A28292090D000F3C70C /* DubDubGrubApp.swift */,
 				027E6E9E2923C95A008B652D /* Model */,
 				02934DB32923247A006579AD /* Views */,
@@ -291,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				02EA5A372920913100F3C70C /* DubDubGrub.entitlements */,
+				026AD3E829259C680099EE06 /* Info.plist */,
 				02EA5A2C292090D100F3C70C /* Assets.xcassets */,
 				02EA5A2E292090D100F3C70C /* Preview Content */,
 			);
@@ -304,6 +304,14 @@
 				02EA5A3A29209D8000F3C70C /* AppTabView.swift */,
 			);
 			name = AppTab;
+			sourceTree = "<group>";
+		};
+		02F3B6922931A12100AB4EE8 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				026AD3E92925AD500099EE06 /* WelcomeView.swift */,
+			);
+			name = Welcome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -1,7 +1,7 @@
 import CloudKit
 import SwiftUI
 
-struct DDGProfile: Identifiable {
+struct DDGProfile: Identifiable, Equatable {
     
     static let kFirstName           = "fisrtName"
     static let kLastName            = "lastName"
